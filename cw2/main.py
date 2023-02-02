@@ -37,7 +37,7 @@ def save():
     }
 
     if len(website) == 0 or len(password) == 0:
-        messagebox.showinfo(title="Oops", message="Please make sure you haven't left any fields empty.")
+        messagebox.showinfo(title="Oops", message="Make sure you haven't left any fields empty.")
     else:
         try:
             with open("data.json", "r") as data_file:
