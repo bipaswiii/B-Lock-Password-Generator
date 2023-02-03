@@ -3,6 +3,7 @@ from tkinter import messagebox
 from random import choice, randint, shuffle
 import pyperclip
 import json
+import base64
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -29,10 +30,29 @@ def save():
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
+    ##can encrypt the password
+    enc_password = ""
+    key = 7
+    for i in range(len(password)):
+        letter = password[i]
+        if letter.isdigit():
+            char_code = int(letter)
+            enc_password += str((char_code + key) % 10)
+        elif letter.isalpha() or (ord(letter) >= 33 and ord(letter) <= 126):
+            char_code = ord(letter)
+            if char_code + key > 126:
+                enc_password += chr(char_code + key - 95)
+            else:
+                enc_password += chr(char_code + key)
+        else:
+            enc_password += letter
+
+    enc_password = base64.b64encode(enc_password.encode()).decode()
+
     new_data = {
         website: {
             "email": email,
-            "password": password,
+            "password": enc_password,
         }
     }
 
@@ -70,7 +90,24 @@ def find_password():
         if website in data:
             email = data[website]["email"]
             password = data[website]["password"]
-            messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
+            password = base64.b64decode(password.encode()).decode()
+            ##password dec code here
+            key=7
+            dec_password= ""
+            for i in range(len(password)):
+                letter = password[i]
+                char_code = ord(letter)
+                if char_code in range(32, 127):
+                    if char_code - key < 32:
+                        dec_password += chr(char_code - key + 95)
+                    else:
+                        dec_password += chr(char_code - key)
+                else:
+                    dec_password += letter
+
+            #dec
+
+            messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {dec_password}")
         else:
             messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
 
