@@ -2,12 +2,14 @@ import unittest
 import base64
 import json
 import pyperclip
+import main
+import tkinter
 
 class TestPasswordGenerator(unittest.TestCase):
 
     def test_generate_password(self):
-        password_entry = Entry()
-        generate_password(password_entry)
+        password_entry = tkinter.Entry()
+        main.generate_password(password_entry)
 
         password = password_entry.get()
         self.assertTrue(password)
@@ -20,7 +22,7 @@ class TestPasswordGenerator(unittest.TestCase):
 
         save_data = {}
 
-        save(website, email, password, save_data)
+        main.save(website, email, password, save_data)
 
         self.assertIn(website, save_data)
         self.assertEqual(save_data[website]["email"], email)
