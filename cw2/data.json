@@ -11,12 +11,16 @@
         "email": "xyz@gmail.com",
         "password": "Tld3eGlxMyAzW24xKw=="
     },
-    "yahoo.com": {
-        "email": "xyz@gmail.com",
-        "password": "WG0walUqMHB7bCs1Vl5d"
-    },
     "gmail": {
         "email": "xyz@gmail.com",
         "password": "aFs5LTVpWDNSMjJcdSB8"
+    },
+    "facebook": {
+        "email": "xyz@gmail.com",
+        "password": "TFY4KHRgeTBgN1lhcSpI"
+    },
+    "bing": {
+        "email": "bing@gmail.com",
+        "password": "XVg0YShtIF9XNXkwNQ=="
     }
 }
