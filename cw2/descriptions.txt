@@ -1,5 +1,0 @@
-The data is stored in the data.json file using the json module.
- The data is saved as a dictionary, with each key being a website name, and its
- value being another dictionary containing the email and password associated with 
-that website. The saved data is read and updated using the open() and 
-json.load() functions, and then written to the file again using json.dump().
